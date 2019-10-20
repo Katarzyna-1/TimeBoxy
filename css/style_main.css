@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* CSS Document */
+
+fieldset{
+	text-align:left;
+	font-size: 1.5em;
+	font-weight:200;
+	position:center;
+	height:400px;
+	width:200px;
+	border:none;
+	border-radius:25px;
+	background-color:#29D4E2;
+	margin:10px;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 100px;
+	padding-bottom: 80px;
+}
+
+textarea, input {
+	width:240px;
+	height: 24px;
+	padding:10px;
+	margin-bottom: 24px;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.button{
+width: 150px;
+height:40px;
+border-radius: 10px;
+border 1px solid #999;
+background-color:#CCCCCC;
+position:static;
+font-weight:400;
+alignment-adjust:central;
+}
+
+h1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 2.5em;
+	padding:0.25em;
+}
+
+
+table { 
+text-align:center;
+alignment-adjust:central;
+}
+
+.main-table {
+	 border: 2px solid black;
+	 border-collapse: collapse;
+}
+
+font {
+	font-family:"Arial Black", Gadget, sans-serif;
+}
+
+.inner-table {
+	bgcolor="#CCCCCC";
+	font-size:0.75em;
+	color:#D5D5D5;
+	border-color:#CCC;
+	border-collapse:collapse;
+	border:dotted;
+}
+
+th {
+	font-family:"Arial Black", Gadget, sans-serif;
+	font-size: 1.5em;
+	height:40px;
+	color:#FFFFFF;	
+	background-color:#666;
+}
+
+.hours {
+		font-size: 1em;
+}
+
+strong {
+	color: #3CF; 8
+}
+
+tr { 
+	text-align:center;
+}
+
+td {
+	 height: 30px; 
+}
+
+
+/*  Tutaj zaczynają się style do klocków czasowych*/
+
+td:hover {
+	background-color:#9FF;
+}
+
+.unit_01 {
+	color:#F00;
+}
+
+.unit_02 {
+	color:#F00;
+}
+
+.unit_03 {
+	color:#F00;
+}
+
+
+/*  Tutaj kończą się style do klocków czasowych*/
