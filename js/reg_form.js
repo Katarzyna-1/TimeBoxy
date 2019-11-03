@@ -18,9 +18,7 @@ const sendRegisterUserRequest = (name, surname, login, password) => {
 	const url = "https://evening-wave-26268.herokuapp.com/api/user/add";
 
 	xmlHttpRequest.open("POST",url,true);
-	//xmlHttpRequest.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
 	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
-	xmlHttpRequest.setRequestHeader("Accept", "application/json");
 		xmlHttpRequest.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 201) {
 			alert("SUKCES");
@@ -30,7 +28,6 @@ const sendRegisterUserRequest = (name, surname, login, password) => {
 		}
 	};
 	
-	//text/plain;charset=UTF-8
 	xmlHttpRequest.send(requestObjectJson);
 	
 };
