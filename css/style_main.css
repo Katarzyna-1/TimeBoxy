@@ -1,42 +1,25 @@
 @charset "UTF-8";
 /* CSS Document */
 
-fieldset{
-	text-align:left;
-	font-size: 1.5em;
-	font-weight:200;
-	position:center;
-	height:400px;
-	width:200px;
-	border:none;
-	border-radius:25px;
-	background-color:#29D4E2;
-	margin:10px;
-	padding-left: 100px;
-	padding-right: 100px;
-	padding-top: 100px;
-	padding-bottom: 80px;
-}
-
-textarea, input {
-	width:240px;
-	height: 24px;
-	padding:10px;
-	margin-bottom: 24px;
-	font-size:14px;
+textarea {
+	width:140px;
+	height: 30px;
+	padding:7px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	font-size:12px;
 	font-family:Arial, Helvetica, sans-serif;
-
 }
 
-.button{
-width: 150px;
-height:40px;
-border-radius: 10px;
-border 1px solid #999;
-background-color:#CCCCCC;
-position:static;
-font-weight:400;
-alignment-adjust:central;
+ input {	
+    vertical-align:central;
+	height: 20px;
+ 	font-size:12px;
+	padding: 2px;
+    margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	float:left;
 }
 
 h1{
@@ -45,19 +28,43 @@ h1{
 	padding:0.25em;
 }
 
+h4{
+	margin-top: 80px;
+	font-family:Arial, Helvetica, sans-serif;
+	color: #3CF; 
+	margin-left: 50px;
+	position:relative;
+	
+}
+
+.basefill {
+	position:relative;
+	width:120px; 
+	height:35px;
+	background-color: red;
+	margin-top: 10px;
+	margin-left:60px;
+	font-family:"Arial Black", Gadget, sans-serif;
+	text-align:center;
+	padding-top: 7px;
+	cursor:pointer;	
+}
+
+.empty {
+	display:inline-table;
+}
+
+.hold {
+	border:solid #0C0 4px;
+}
 
 table { 
 text-align:center;
-alignment-adjust:central;
 }
 
 .main-table {
 	 border: 2px solid black;
 	 border-collapse: collapse;
-}
-
-font {
-	font-family:"Arial Black", Gadget, sans-serif;
 }
 
 .inner-table {
@@ -81,9 +88,6 @@ th {
 		font-size: 1em;
 }
 
-strong {
-	color: #3CF; 8
-}
 
 tr { 
 	text-align:center;
