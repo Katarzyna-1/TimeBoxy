@@ -66,23 +66,15 @@ function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate) {
 
 	xmlHttpRequest.open("POST",url,true);
 	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
-	//	xmlHttpRequest.onreadystatechange = function(){
-	//	if(this.readyState == 4 && this.status == 201) {
-	//		alert("SUKCES");
-	//	};
-	//	if(this.readyState == 4 && this.status != 201) {
-	//		alert("Fail " + this.responseText);
-	//	}
-	//};
 	
 	xmlHttpRequest.send(requestObjectJson);
 	
 }
 
 // Funkcje przeciągania
-function dragStart() {
+function dragStart(e) {
 	this.className += ' hold';
-	//setTimeout( () => (this.className = 'invisible'), 0);
+	e.dataTransfer.setData('text',"");
 	console.log('dragStart');
 	}
 
