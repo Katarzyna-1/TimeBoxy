@@ -21,7 +21,6 @@ const sendRegisterUserRequest = (name, surname, login, password) => {
 	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
 		xmlHttpRequest.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 201) {
-			alert("SUKCES");
 		};
 		if(this.readyState == 4 && this.status != 201) {
 			alert("Fail " + this.responseText);

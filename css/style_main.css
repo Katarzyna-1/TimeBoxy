@@ -38,20 +38,24 @@ h4{
 }
 
 .basefill {
-	position:relative;
-	width:120px; 
-	height:35px;
+	position: relative;
+	width: 80px; 
+	height:20px;
 	background-color: red;
 	margin-top: 10px;
-	margin-left:60px;
-	font-family:"Arial Black", Gadget, sans-serif;
-	text-align:center;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 14px;
+	text-align: center;
 	padding-top: 7px;
-	cursor:pointer;	
+	cursor: pointer;	
 }
 
 .empty {
-	display:inline-table;
+	display: inline-table;
+	background-color: white;
+	width: 86px; 
+	height:22px;
+
 }
 
 .hold {
@@ -59,12 +63,13 @@ h4{
 }
 
 table { 
-text-align:center;
+text-align: center;
 }
 
 .main-table {
 	 border: 2px solid black;
 	 border-collapse: collapse;
+
 }
 
 .inner-table {
