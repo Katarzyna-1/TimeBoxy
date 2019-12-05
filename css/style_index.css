@@ -92,19 +92,6 @@ font {
 	font-family:"Arial Black", Gadget, sans-serif;
 }
 
-.inner-table {
-	bgcolor="#CCCCCC";
-	font-size:0.75em;
-	color:#D5D5D5;
-	border-color:#CCC;
-	border-collapse:collapse;
-	border:dotted;
-}
-
-
-.hours {
-		font-size: 1em;
-}
 
 strong {
 	color: #3CF; 8
