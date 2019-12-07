@@ -5,6 +5,58 @@ const empties = document.querySelectorAll('.empty');
 fill.addEventListener('dragstart', dragStart);
 fill.addEventListener('dragend', dragEnd);
 
+
+function convertDateIntoString(timeBoxDate) {
+	const month = timeBoxDate.getMonth() + 1;
+	const day = timeBoxDate.getDate().toString();
+	
+	const monthToAdd = month.toString().length === 1? '0' + month : month;
+	const dayToAdd = day.length === 1? '0' + day : day;
+	return timeBoxDate.getFullYear() + '-' + monthToAdd + '-' + dayToAdd;
+}
+
+function pullSaveBoxesData() {
+	const currentDate = new Date();
+	const dayInTheWeek = currentDate.getDay();
+	const requestObject = {};
+	let endDate;
+	if(dayInTheWeek === 7) {
+		endDate = currentDate;
+	} else {
+		let diff = 7 - dayInTheWeek;
+		endDate = new Date();
+		endDate.setDate(currentDate.getDate() + diff);
+
+	}
+	let startDate;
+
+	if(dayInTheWeek === 1) {
+		startDate = currentDate;
+	} else {
+		let diff = dayInTheWeek - 1;
+		startDate = new Date();
+		startDate.setDate(currentDate.getDate() - diff);
+	
+	}
+	
+	
+	requestObject.endDate = convertDateIntoString(endDate);
+	requestObject.startDate = convertDateIntoString(startDate);
+	requestObject.userId = 1;
+	
+	const requestObjectJson = JSON.stringify(requestObject);
+	const xmlHttpRequest = new XMLHttpRequest();
+	const url = "https://evening-wave-26268.herokuapp.com/api/timeTable/getTimeRecordsForATimePeriod";
+
+	xmlHttpRequest.open("POST",url,true);
+	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
+	
+	xmlHttpRequest.send(requestObjectJson);
+
+}
+
+document.getElementById('table').onload = pullSaveBoxesData();
+
 //Loop through empties and call drag events
 for (const empty of empties) {
 	empty.addEventListener('dragover', dragOver);
@@ -14,9 +66,7 @@ for (const empty of empties) {
 }
 
 
-function convertDateIntoString(timeBoxDate) {
-	return timeBoxDate.getFullYear() + '-' + timeBoxDate.getMonth() + '-' + timeBoxDate.getDate();
-}
+
 
 function convertBoxValuesIntoDate(timeBoxDayTimeArr) {
 	const timeBoxWeekDay = timeBoxDayTimeArr[0];
