@@ -41,7 +41,7 @@ h4{
 	display: inline-block;
 	background-color: white;
 	width: 80px; 
-	height:30px;
+	height: 38px;
 	border: none;
 	margin: 0px;
 }
@@ -52,6 +52,7 @@ h4{
 	height: 30px;
 	background-color: red;
 	margin-top: 1px;
+	margin-bottom: 1px;
 	font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 14px;
 	color: black;
@@ -97,10 +98,11 @@ text-align: center;
 	font-size:10px;
 	color:#D5D5D5;
 	border-width: 0px;
-	align-items: center;
-	align: center;
 	text-align: center;
-	margin: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 1px;
 	vertical-align:	top;
 	padding: 0px;
 }
