@@ -15,6 +15,29 @@ function convertDateIntoString(timeBoxDate) {
 	return timeBoxDate.getFullYear() + '-' + monthToAdd + '-' + dayToAdd;
 }
 
+function fillEmptyBox(timeBox) {
+	for(let index = 0; index < empties.length; index++) {
+		if(empties[index].id === timeBox.uiBoxId){
+			const newTimeBox = fill.cloneNode(true);
+			empties[index].append(newTimeBox);
+		}
+	}
+
+} 
+
+function parseResponse(responseText) {
+	const response = JSON.parse(responseText);
+
+	for(let index = 0; index < response.length; index++) {
+		const timeRecord = response[index];
+
+		for(let index2 = 0; index2 < timeRecord.timeBoxes.length; index2++) {
+
+			fillEmptyBox(timeRecord.timeBoxes[index2]);
+		}
+	}
+}
+
 function pullSaveBoxesData() {
 	const currentDate = new Date();
 	const dayInTheWeek = currentDate.getDay();
@@ -47,6 +70,12 @@ function pullSaveBoxesData() {
 	const requestObjectJson = JSON.stringify(requestObject);
 	const xmlHttpRequest = new XMLHttpRequest();
 	const url = "https://evening-wave-26268.herokuapp.com/api/timeTable/getTimeRecordsForATimePeriod";
+	
+	xmlHttpRequest.onreadystatechange = function() {
+	 	if (this.readyState == 4 && this.status == 302) {
+	      		parseResponse(this.responseText);
+	    }
+	};
 
 	xmlHttpRequest.open("POST",url,true);
 	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
@@ -89,7 +118,7 @@ function convertBoxValuesIntoStringTime(timeBoxDayTimeArr) {
 	timeBoxMinutes  + ':' + '00.000Z';
 }
 
-function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate) {
+function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
 	const requestObject = {};
 	const timeCategory = {};
 	timeCategory.colour = 'red';
@@ -104,6 +133,7 @@ function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate) {
 	newTimeBox.userId = 1;
 	newTimeBox.minutes = 30;
 	newTimeBox.value = 'praca';
+	newTimeBox.uiBoxId = id;
 	
 	requestObject.date = timeBoxDate;
 	requestObject.userId = 1;
@@ -159,7 +189,7 @@ function dragDrop(){
 		if(timeBoxDayTimeArr && timeBoxDayTimeArr.length) {
 			const timeBoxDateInString = convertBoxValuesIntoStringTime(timeBoxDayTimeArr);
 			const soleTimeBoxDate = convertDateIntoString(convertBoxValuesIntoDate(timeBoxDayTimeArr));
-			sendTimeBoxRequestToBackend(timeBoxDateInString, soleTimeBoxDate); 
+			sendTimeBoxRequestToBackend(timeBoxDateInString, soleTimeBoxDate, this.id); 
 		}
 		console.log('dragDrop');
 		}
