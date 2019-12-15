@@ -151,7 +151,8 @@ function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
 	
 }
 
-// Funkcje przeciągania
+// Drag and drop functions
+
 function dragStart(e) {
 	this.className += ' hold';
 	e.dataTransfer.setData('text',"");
