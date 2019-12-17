@@ -31,7 +31,6 @@ h1{
 h4{
 	margin-top: 30px;
 	font-family:Arial, Helvetica, sans-serif;
-	color: #3CF; 
 	margin-left: 50px;
 	position relative;
 	
@@ -127,6 +126,33 @@ tr {
 td {
 	 height: 30px; 
 	 vertical-align: top;
+}
+
+/* Trash Image Delete styles */
+
+.trash-delete {
+position: absolute;
+left: 925px;
+top: 520px;
+height: 200px;
+width: 120px;
+background-color: transparent;
+/* background-color: #666; */
+z-index: 0; 
+}
+
+.lid {
+position: absolute;
+left: 900px;
+top: 480px;
+z-index: -1;
+}
+
+.trash {
+position: absolute;
+left: 900px;
+top: 520px;
+z-index: -2;
 }
 
 
