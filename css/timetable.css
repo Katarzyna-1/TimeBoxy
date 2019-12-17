@@ -141,13 +141,6 @@ background-color: transparent;
 z-index: 0; 
 }
 
-.lid {
-position: absolute;
-left: 900px;
-top: 500px;
-z-index: -1;
-}
-
 .trash {
 position: absolute;
 left: 900px;
@@ -155,6 +148,18 @@ top: 520px;
 z-index: -2;
 }
 
+.lid {
+position: absolute;
+left: 900px;
+top: 500px;
+z-index: -1;
+}
+
+#lid {
+transform: rotate(40deg);
+ -ms-transform: rotate(40deg); /* IE 9 */
+ -webkit-transform: rotate(40deg); /* Safari 3-8 */
+}
 
 /*  Tutaj zaczynają się style do klocków czasowych*/
 
