@@ -195,4 +195,17 @@ function dragDrop(){
 		console.log('dragDrop');
 		}
 	}
+
+
+
+	function dragDelete(){
+
+	}
 	
+
+// Lid open function
+
+function lidOpen(){
+
+}
+
