@@ -163,10 +163,6 @@ transform: rotate(30deg);
 
 /*  Tutaj zaczynają się style do klocków czasowych*/
 
-td:hover {
-	background-color:#9FF;
-}
-
 .unit_01 {
 	color:#F00;
 }
