@@ -197,11 +197,16 @@ function dragDrop(){
 	}
 
 
+// Deleting from the Timetable
 
-	function dragDelete(){
+	function dragDelete(e) {
+		if (!this.childElementCount && this.id) {
 
+		}
+		console.log('dragDelete');
 	}
-	
+
+
 
 // Lid open function
 

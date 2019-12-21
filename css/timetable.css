@@ -156,9 +156,9 @@ z-index: -1;
 }
 
 #lid {
-transform: rotate(40deg);
- -ms-transform: rotate(40deg); /* IE 9 */
- -webkit-transform: rotate(40deg); /* Safari 3-8 */
+transform: rotate(30deg);
+ -ms-transform: rotate(30deg); /* IE 9 */
+ -webkit-transform: rotate(30deg); /* Safari 3-8 */
 }
 
 /*  Tutaj zaczynają się style do klocków czasowych*/
