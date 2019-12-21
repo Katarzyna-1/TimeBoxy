@@ -130,7 +130,7 @@ td {
 
 /* Trash Image Delete styles */
 
-.trash-delete {
+#trash-delete {
 position: absolute;
 left: 925px;
 top: 520px;

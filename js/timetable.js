@@ -1,5 +1,11 @@
 const fill = document.querySelector('.basefill');
 const empties = document.querySelectorAll('.empty');
+const trashArea = document.getElementById('trash-delete');
+
+trashArea.addEventListener('dragover', dragOver);
+trashArea.addEventListener('dragenter', dragEnter);
+trashArea.addEventListener('dragleave', dragLeave);
+trashArea.addEventListener('drop', dragDropDelete);
 
 //Fill listeners - nadsluchiwanie przyjścia wypełnienia
 fill.addEventListener('dragstart', dragStart);
@@ -19,6 +25,7 @@ function fillEmptyBox(timeBox) {
 	for(let index = 0; index < empties.length; index++) {
 		if(empties[index].id === timeBox.uiBoxId){
 			const newTimeBox = fill.cloneNode(true);
+			newTimeBox.setAttribute('backend-id', timeBox.id); 
 			empties[index].append(newTimeBox);
 		}
 	}
@@ -58,7 +65,7 @@ function pullSaveBoxesData() {
 	} else {
 		let diff = dayInTheWeek - 1;
 		startDate = new Date();
-		startDate.setDate(currentDate.getDate() - diff);
+		startDate.setDate(currentDate.getDate() - diff - 1);
 	
 	}
 	
@@ -92,6 +99,7 @@ for (const empty of empties) {
 	empty.addEventListener('dragenter', dragEnter);
 	empty.addEventListener('dragleave', dragLeave);
 	empty.addEventListener('drop', dragDrop);
+	empty.addEventListener('dragstart',dragStart);
 }
 
 
@@ -155,7 +163,10 @@ function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
 
 function dragStart(e) {
 	this.className += ' hold';
-	e.dataTransfer.setData('text',"");
+	if(this.childElementCount > 0) {
+		e.dataTransfer.setData("text", this.children[0].getAttribute('backend-id'));	
+	}
+ 	
 	console.log('dragStart');
 	}
 
@@ -199,11 +210,13 @@ function dragDrop(){
 
 // Deleting from the Timetable
 
-	function dragDelete(e) {
+	function dragDropDelete(e) {
 		if (!this.childElementCount && this.id) {
 
 		}
-		console.log('dragDelete');
+  		var data = e.dataTransfer.getData("text");
+		console.log('id ' + e.dataTransfer.getData('text/plain'));
+		console.log('dragDelete ');
 	}
 
 
