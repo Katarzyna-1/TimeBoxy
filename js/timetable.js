@@ -45,6 +45,7 @@ function parseResponse(responseText) {
 	}
 }
 
+
 function pullSaveBoxesData() {
 	const currentDate = new Date();
 	const dayInTheWeek = currentDate.getDay();
@@ -126,7 +127,7 @@ function convertBoxValuesIntoStringTime(timeBoxDayTimeArr) {
 	timeBoxMinutes  + ':' + '00.000Z';
 }
 
-function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
+function sendAddTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
 	const requestObject = {};
 	const timeCategory = {};
 	timeCategory.colour = 'red';
@@ -151,41 +152,58 @@ function sendTimeBoxRequestToBackend(timeBoxDateAndTime, timeBoxDate, id) {
 	const requestObjectJson = JSON.stringify(requestObject);
 	const xmlHttpRequest = new XMLHttpRequest();
 	const url = "https://evening-wave-26268.herokuapp.com/api/timeTable/addTimeRecords";
+	
+	xmlHttpRequest.onreadystatechange = function() {
+	 	if (this.readyState == 4 && this.status == 201) {
+	      			location.reload(true);
+	    }
+	};
 
 	xmlHttpRequest.open("POST",url,true);
 	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
+	xmlHttpRequest.send(requestObjectJson);
+}
+
+function sendDeleteTimeBoxRequest(timeBoxId) {
+	const requestObject = {};
+	requestObject.id = timeBoxId;
+	const requestObjectJson = JSON.stringify(requestObject);
+	const xmlHttpRequest = new XMLHttpRequest();
+	const url = "https://evening-wave-26268.herokuapp.com/api/timeTable/deleteTimeRecords";
+
+	xmlHttpRequest.open("DELETE",url,true);
+	xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
 	
 	xmlHttpRequest.send(requestObjectJson);
-	
 }
 
 // Drag and drop functions
 
 function dragStart(e) {
 	this.className += ' hold';
-	if(this.childElementCount > 0) {
-		e.dataTransfer.setData("text", this.children[0].getAttribute('backend-id'));	
+	const timeBoxBackendId = this.childElementCount > 0 && this.children[0] ?
+	this.children[0].getAttribute('backend-id') : null;
+	if(timeBoxBackendId) {
+		e.dataTransfer.setData("text", timeBoxBackendId);
 	}
- 	
-	console.log('dragStart');
-	}
+}
 
 
 function dragEnd () {
 	this.className += ' fill';
-	console.log('dragEnd');
-	}
+}
 
 function dragOver (e) {
-	e.preventDefault();
+	if(e.preventDefault) { e.preventDefault(); };
+    if(e.stopPropagation) { e.stopPropagation(); };
 	console.log('dragOver');
-	}
+}
 
 function dragEnter(e) {
-e.preventDefault();
-this.className += ' hovered';
-console.log('dragEnter');
-	}
+    if(e.preventDefault) { e.preventDefault(); };
+    if(e.stopPropagation) { e.stopPropagation(); };
+	this.className += ' hovered';
+}
 
 function dragLeave() {
 	this.className =' empty';
@@ -201,23 +219,28 @@ function dragDrop(){
 		if(timeBoxDayTimeArr && timeBoxDayTimeArr.length) {
 			const timeBoxDateInString = convertBoxValuesIntoStringTime(timeBoxDayTimeArr);
 			const soleTimeBoxDate = convertDateIntoString(convertBoxValuesIntoDate(timeBoxDayTimeArr));
-			sendTimeBoxRequestToBackend(timeBoxDateInString, soleTimeBoxDate, this.id); 
-		}
-		console.log('dragDrop');
+			sendAddTimeBoxRequestToBackend(timeBoxDateInString, soleTimeBoxDate, this.id); 
 		}
 	}
+}
 
 
 // Deleting from the Timetable
-
-	function dragDropDelete(e) {
-		if (!this.childElementCount && this.id) {
+function dragDropDelete(e) {
+  	const timeBoxToBeDeletedId = e.dataTransfer.getData("text");
+	if(timeBoxToBeDeletedId) {
+		for(const empty of empties) {
+			const timeBoxBackendId = empty.childElementCount > 0 && empty.children[0] ?
+			empty.children[0].getAttribute('backend-id') : null;
+			if(timeBoxBackendId && timeBoxBackendId === timeBoxToBeDeletedId) {
+				const timeBox = empty.children[0];
+				timeBox.remove();
+			}
 
 		}
-  		var data = e.dataTransfer.getData("text");
-		console.log('id ' + e.dataTransfer.getData('text/plain'));
-		console.log('dragDelete ');
+		sendDeleteTimeBoxRequest(timeBoxToBeDeletedId);
 	}
+}
 
 
 
